@@ -400,11 +400,11 @@ static rt_err_t _sgp30_init(struct rt_sensor_intf *intf)
 rt_err_t rt_hw_sgp30_init(const char *name, struct rt_sensor_config *cfg)
 {
     int result;
-    rt_sensor_t sensor_tvoc = RT_NULL, 
+    rt_sensor_t sensor_tvoc = RT_NULL;
     rt_sensor_t sensor_eco2 = RT_NULL;
     struct rt_sensor_module *module = RT_NULL;
 
-    if (_sgp30_init(cfg->intf) != RT_EOK)
+    if (_sgp30_init(&cfg->intf) != RT_EOK)
     {
         return -RT_ERROR;
     }
