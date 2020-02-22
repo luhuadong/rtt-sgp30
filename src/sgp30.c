@@ -17,6 +17,23 @@
 #define DBG_LVL DBG_INFO
 #include <rtdbg.h>
 
+/* SGP30 constants */
+#define SGP30_FEATURESET               (0x0020)  /* The required set for this library */
+#define SGP30_CRC8_POLYNOMIAL          (0x31)    /* Seed for SGP30's CRC polynomial */
+#define SGP30_CRC8_INIT                (0xFF)    /* Init value for CRC */
+#define SGP30_WORD_LEN                 (2)       /* 2 bytes per word */
+
+/* SGP30 commands */
+#define Init_air_quality               (0x2003)
+#define Measure_air_quality            (0x2008)
+#define Get_baseline                   (0x2015)
+#define Set_baseline                   (0x201e)
+#define Set_humidity                   (0x2061)
+#define Measure_test                   (0x2032)
+#define Get_feature_set_version        (0x202f)
+#define Measure_raw_signals            (0x2050)
+#define Get_Serial_ID                  (0x3682)
+
 
 //#ifdef PKG_USING_SGP30
 
@@ -343,9 +360,5 @@ void sgp30_delete(sgp30_device_t dev)
         rt_free(dev);
     }
 }
-
-rt_err_t       sgp30_init(sgp30_device_t dev, const char *i2c_bus_name);
-sgp30_device_t sgp30_create(const char *i2c_bus_name);
-void           sgp30_delete(sgp30_device_t dev);
 
 //#endif /* PKG_USING_SGP30 */

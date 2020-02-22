@@ -16,28 +16,21 @@
 #include <sensor.h>
 #include <board.h>
 
-#define SGP30LIB_VERSION           "0.0.1"
+#define SGP30LIB_VERSION               "0.0.1"
 
-// the i2c address
-#define SGP30_I2CADDR              0x58    /* SGP30 has only one I2C address */
+/* SGP30 i2c address */
+#define SGP30_I2CADDR                  (0x58)    /* SGP30 has only one I2C address */
 
-// commands and constants
-#define SGP30_FEATURESET           0x0020  /* The required set for this library */
-#define SGP30_CRC8_POLYNOMIAL      0x31    /* Seed for SGP30's CRC polynomial */
-#define SGP30_CRC8_INIT            0xFF    /* Init value for CRC */
-#define SGP30_WORD_LEN             2       /* 2 bytes per word */
+/* Custom sensor control cmd types */
+#define  RT_SENSOR_CTRL_GET_BASELINE   (10)      /* Get device id */
+#define  RT_SENSOR_CTRL_SET_BASELINE   (11)      /* Set the measure range of sensor. unit is info of sensor */
+#define  RT_SENSOR_CTRL_SET_HUMIDITY   (12)      /* Set output date rate. unit is HZ */
 
-/* Command */
-#define Init_air_quality           0x2003
-#define Measure_air_quality        0x2008
-#define Get_baseline               0x2015
-#define Set_baseline               0x201e
-#define Set_humidity               0x2061
-#define Measure_test               0x2032
-#define Get_feature_set_version    0x202f
-#define Measure_raw_signals        0x2050
-
-#define Get_Serial_ID              0x3682
+struct sgp30_baseline
+{
+    rt_uint16_t eco2_base;
+    rt_uint16_t tvoc_base;
+};
 
 struct sgp30_device
 {
