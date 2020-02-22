@@ -7,7 +7,7 @@ cwd   = GetCurrentDir()
 # add sgp30 src files.
 if GetDepend('PKG_USING_SGP30'):
     src += Glob('src/sgp30.c')
-    src += Glob('src/sensor_asair_dhtxx.c')
+    src += Glob('src/sensor_sensirion_sgp30.c')
 
 if GetDepend('PKG_USING_SGP30_SAMPLE'):
     src += Glob('examples/sgp30_sample.c')
