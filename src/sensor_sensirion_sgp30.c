@@ -201,7 +201,7 @@ static rt_size_t _sgp30_polling_get_data(struct rt_sensor_device *sensor, void *
     struct rt_sensor_data *sensor_data = buf;
     struct rt_i2c_bus_device *i2c_bus = (struct rt_i2c_bus_device *)sensor->config.intf.user_data;
 
-    rt_uint8_t measure_data[2] = {0};
+    rt_uint16_t measure_data[2] = {0};
     if (RT_EOK != _sgp30_measure(i2c_bus, measure_data, sizeof(measure_data)))
     {
         LOG_E("Can not read from %s", sensor->info.model);
@@ -279,21 +279,21 @@ static rt_err_t sgp30_control(struct rt_sensor_device *sensor, int cmd, void *ar
         LOG_D("Custom command : Get baseline");
         if (args)
         {
-            result = sgp30_get_baseline(i2c_bus, args);
+            result = _sgp30_get_baseline(i2c_bus, args);
         }
         break;
     case RT_SENSOR_CTRL_SET_BASELINE:  /* Custom command : Set baseline */
         LOG_D("Custom command : Set baseline");
         if (args)
         {
-            result = sgp30_set_baseline(i2c_bus, args);
+            result = _sgp30_set_baseline(i2c_bus, args);
         }
         break;
     case RT_SENSOR_CTRL_SET_HUMIDITY:  /* Custom command : Set humidity */
         LOG_D("Custom command : Set humidity");
         if (args)
         {
-            result = sgp30_set_humidity(i2c_bus, args);
+            result = _sgp30_set_humidity(i2c_bus, args);
         }
         break;
     default:
