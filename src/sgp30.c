@@ -13,8 +13,8 @@
 #include <string.h>
 #include "sgp30.h"
 
-#define DBG_TAG "sensor.sensirion.sgp30"
-#define DBG_LVL DBG_INFO
+#define DBG_TAG                        "sensor.sensirion.sgp30"
+#define DBG_LVL                        DBG_LOG
 #include <rtdbg.h>
 
 /* SGP30 constants */
