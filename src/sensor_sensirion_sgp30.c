@@ -376,6 +376,14 @@ static rt_err_t _sensor_init(struct rt_i2c_bus_device *i2c_bus)
         return -RT_ERROR;
     }
 
+#ifdef PKG_USING_SGP30_INIT_BASELINE
+    struct sgp30_baseline baseline = {
+        PKG_USING_SGP30_INIT_BASELINE_ECO2, 
+        PKG_USING_SGP30_INIT_BASELINE_TVOC
+    };
+    _sgp30_set_baseline(i2c_bus, &baseline);
+#endif
+
     return RT_EOK;
 }
 

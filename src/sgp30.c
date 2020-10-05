@@ -285,6 +285,10 @@ static rt_err_t sensor_init(sgp30_device_t dev)
     if(!read_word_from_command(dev->i2c, cmd, 2, 10, RT_NULL, 0))
         return -RT_ERROR;
 
+#ifdef PKG_USING_SGP30_INIT_BASELINE
+    sgp30_set_baseline(dev, PKG_USING_SGP30_INIT_BASELINE_ECO2, PKG_USING_SGP30_INIT_BASELINE_TVOC);
+#endif
+
     return RT_EOK;
 }
 
