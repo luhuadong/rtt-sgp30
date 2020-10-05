@@ -19,7 +19,11 @@
 #define SGP30LIB_VERSION               "1.0.0"
 
 /* SGP30 i2c address */
+#ifdef PKG_USING_SGP30_I2C_ADDR
+#define SGP30_I2CADDR                  PKG_USING_SGP30_I2C_ADDR
+#else
 #define SGP30_I2CADDR                  (0x58)    /* SGP30 has only one I2C address */
+#endif
 
 /* Custom sensor control cmd types */
 #define  RT_SENSOR_CTRL_GET_BASELINE   (0x110)   /* Get device id */
