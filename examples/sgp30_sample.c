@@ -19,6 +19,8 @@
 #define SGP30_I2C_BUS_NAME       "i2c1"
 #endif
 
+#define TEST_COUNT               20
+
 /* cat_sgp30 */
 static void cat_sgp30(void)
 {
@@ -30,12 +32,7 @@ static void cat_sgp30(void)
         return;
     }
 
-    rt_kprintf("(SGP30) Serial number: %x.%x.%x\n", sgp30->serialnumber[0], 
-               sgp30->serialnumber[1], sgp30->serialnumber[2]);
-
-    rt_uint16_t loop = 20;
-
-    while(loop--)
+    for (int i=0; i<TEST_COUNT; i++)
     {
         /* Read TVOC and eCO2 */
         if(!sgp30_measure(sgp30)) 
@@ -54,7 +51,7 @@ static void cat_sgp30(void)
         }
 
         rt_kprintf("[%2u] TVOC: %d ppb, eCO2: %d ppm; Raw H2: %d, Raw Ethanol: %d\n", 
-                   loop, sgp30->TVOC, sgp30->eCO2, sgp30->rawH2, sgp30->rawEthanol);
+                   i, sgp30->TVOC, sgp30->eCO2, sgp30->rawH2, sgp30->rawEthanol);
 
         rt_thread_mdelay(1500);
     }

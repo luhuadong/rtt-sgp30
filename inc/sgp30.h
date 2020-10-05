@@ -16,7 +16,7 @@
 #include <sensor.h>
 #include <board.h>
 
-#define SGP30LIB_VERSION               "0.8.0"
+#define SGP30LIB_VERSION               "1.0.0"
 
 /* SGP30 i2c address */
 #define SGP30_I2CADDR                  (0x58)    /* SGP30 has only one I2C address */

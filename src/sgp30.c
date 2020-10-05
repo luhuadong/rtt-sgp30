@@ -267,13 +267,15 @@ static rt_err_t sensor_init(sgp30_device_t dev)
     if (!read_word_from_command(dev->i2c, cmd, 2, 10, dev->serialnumber, 3))
         return -RT_ERROR;
 
+    LOG_D("Serial ID: %04X-%04X-%04X", dev->serialnumber[0], dev->serialnumber[1], dev->serialnumber[2]);
+
     /* Get_feature_set_version */
     cmd[0] = 0x20;
     cmd[1] = 0x2F;
     if (!read_word_from_command(dev->i2c, cmd, 2, 10, &featureset, 1))
         return -RT_ERROR;
 
-    //rt_kprintf("(SGP30) Featureset 0x%x\n", featureset);
+    LOG_D("Featureset: 0x%04X", featureset);
     if ((featureset & 0xF0) != SGP30_FEATURESET)
         return -RT_ERROR;
 

@@ -352,7 +352,7 @@ static rt_err_t _sensor_init(struct rt_i2c_bus_device *i2c_bus)
     {
         return -RT_ERROR;
     }
-    LOG_D("Serial number: %02d.%02d.%02d", serialnumber[0], serialnumber[1], serialnumber[2]);
+    LOG_D("Serial number: %04X-%04X-%04X", serialnumber[0], serialnumber[1], serialnumber[2]);
 
     /* Get_feature_set_version */
     cmd[0] = 0x20;
@@ -361,7 +361,7 @@ static rt_err_t _sensor_init(struct rt_i2c_bus_device *i2c_bus)
     {
         return -RT_ERROR;
     }
-    LOG_D("Featureset 0x%x", featureset);
+    LOG_D("Featureset 0x%04X", featureset);
 
     if ((featureset & 0xF0) != SGP30_FEATURESET)
     {
