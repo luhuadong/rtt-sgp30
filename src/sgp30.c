@@ -14,7 +14,11 @@
 #include "sgp30.h"
 
 #define DBG_TAG                        "sensor.sensirion.sgp30"
+#ifdef PKG_USING_SGP30_DEBUG
 #define DBG_LVL                        DBG_LOG
+#else
+#define DBG_LVL                        DBG_ERROR
+#endif
 #include <rtdbg.h>
 
 /* SGP30 constants */
