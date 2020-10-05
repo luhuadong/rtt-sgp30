@@ -13,7 +13,11 @@
 #include <board.h>
 #include "sgp30.h"
 
+#ifdef PKG_USING_SGP30_SAMPLE_I2C_BUS_NAME
+#define SGP30_I2C_BUS_NAME       PKG_USING_SGP30_SAMPLE_I2C_BUS_NAME
+#else
 #define SGP30_I2C_BUS_NAME       "i2c1"
+#endif
 
 /* cat_sgp30 */
 static void cat_sgp30(void)

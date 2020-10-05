@@ -13,7 +13,11 @@
 #include <board.h>
 #include "sgp30.h"
 
+#ifdef PKG_USING_SGP30_SAMPLE_I2C_BUS_NAME
+#define SGP30_I2C_BUS_NAME       PKG_USING_SGP30_SAMPLE_I2C_BUS_NAME
+#else
 #define SGP30_I2C_BUS_NAME       "i2c1"
+#endif
 
 static void read_tvoc_entry(void *args)
 {
@@ -101,7 +105,9 @@ static int sgp30_read_sample(void)
         rt_thread_startup(eco2_thread);
 
 }
-INIT_APP_EXPORT(sgp30_read_sample);
+#ifdef FINSH_USING_MSH
+MSH_CMD_EXPORT(sgp30_read_sample, read sgp30 sensor data);
+#endif
 
 static int rt_hw_sgp30_port(void)
 {

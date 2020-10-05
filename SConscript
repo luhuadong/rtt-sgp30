@@ -12,6 +12,7 @@ if GetDepend('PKG_USING_SGP30'):
 if GetDepend('PKG_USING_SGP30_SAMPLE'):
     src += Glob('examples/sgp30_sample.c')
     src += Glob('examples/sensor_sgp30_sample.c')
+    src += Glob('examples/sensor_sgp30_cmd_sample.c')
 
 # add sgp30 include path.
 path  = [cwd + '/inc']

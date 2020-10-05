@@ -13,6 +13,9 @@
 #include <board.h>
 #include "sgp30.h"
 
+/*!
+ *  @brief  Get TVOC value from SGP30 sensor
+ */
 static void cat_sgp30_tvoc(void)
 {
     rt_device_t tvoc_dev = RT_NULL;
@@ -40,6 +43,9 @@ static void cat_sgp30_tvoc(void)
     rt_device_close(tvoc_dev);
 }
 
+/*!
+ *  @brief  Get eCO2 value from SGP30 sensor
+ */
 static void cat_sgp30_eco2(void)
 {
     rt_device_t eco2_dev = RT_NULL;
@@ -67,6 +73,9 @@ static void cat_sgp30_eco2(void)
     rt_device_close(eco2_dev);
 }
 
+/*!
+ *  @brief  Get Baseline value from SGP30 sensor
+ */
 static void cat_sgp30_baseline(void)
 {
     rt_device_t sgp30_dev = RT_NULL;
@@ -93,6 +102,7 @@ static void cat_sgp30_baseline(void)
 
     rt_device_close(sgp30_dev);
 }
+
 #ifdef FINSH_USING_MSH
 MSH_CMD_EXPORT(cat_sgp30_tvoc, read sgp30 TVOC data);
 MSH_CMD_EXPORT(cat_sgp30_eco2, read sgp30 eCO2 data);
