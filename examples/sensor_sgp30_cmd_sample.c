@@ -39,7 +39,7 @@ static void sgp30_read_tvoc(void)
     {
         rt_kprintf("Read TVOC data failed.\n");
     }
-    rt_kprintf("[%d] TVOC: %d\n", sensor_data.timestamp, sensor_data.data.tvoc);
+    rt_kprintf("[%d] TVOC: %d ppb\n", sensor_data.timestamp, sensor_data.data.tvoc);
 
     rt_device_close(tvoc_dev);
 }
@@ -69,7 +69,7 @@ static void sgp30_read_eco2(void)
     {
         rt_kprintf("Read eCO2 data failed.\n");
     }
-    rt_kprintf("[%d] eCO2: %d\n", sensor_data.timestamp, sensor_data.data.eco2);
+    rt_kprintf("[%d] eCO2: %d ppm\n", sensor_data.timestamp, sensor_data.data.eco2);
 
     rt_device_close(eco2_dev);
 }

@@ -41,7 +41,7 @@ static void read_tvoc_entry(void *args)
             rt_kprintf("Read TVOC data failed.\n");
             continue;
         }
-        rt_kprintf("[%d] TVOC: %d\n", sensor_data.timestamp, sensor_data.data.tvoc);
+        rt_kprintf("[%d] TVOC: %d ppb\n", sensor_data.timestamp, sensor_data.data.tvoc);
 
         rt_thread_mdelay(2000);
     }
@@ -74,7 +74,7 @@ static void read_eco2_entry(void *args)
             rt_kprintf("Read eCO2 data failed.\n");
             continue;
         }
-        rt_kprintf("[%d] eCO2: %d\n", sensor_data.timestamp, sensor_data.data.eco2);
+        rt_kprintf("[%d] eCO2: %d ppm\n", sensor_data.timestamp, sensor_data.data.eco2);
 
         rt_thread_mdelay(2000);
     }
