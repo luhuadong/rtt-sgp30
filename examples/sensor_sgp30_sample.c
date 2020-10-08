@@ -13,11 +13,8 @@
 #include <board.h>
 #include "sgp30.h"
 
-#ifdef PKG_USING_SGP30_SAMPLE_I2C_BUS_NAME
 #define SGP30_I2C_BUS_NAME       PKG_USING_SGP30_SAMPLE_I2C_BUS_NAME
-#else
-#define SGP30_I2C_BUS_NAME       "i2c1"
-#endif
+#define SGP30_I2C_ADDRESS        PKG_USING_SGP30_I2C_ADDRESS
 
 static void read_tvoc_entry(void *args)
 {
@@ -115,6 +112,7 @@ static int rt_hw_sgp30_port(void)
     
     cfg.intf.type = RT_SENSOR_INTF_I2C;
     cfg.intf.dev_name = SGP30_I2C_BUS_NAME;
+    cfg.intf.user_data = (void *)SGP30_I2C_ADDRESS;
     rt_hw_sgp30_init("sg3", &cfg);
     
     return RT_EOK;
