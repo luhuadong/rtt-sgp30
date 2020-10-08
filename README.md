@@ -259,12 +259,16 @@ rt_err_t rt_hw_sgp30_init(const char *name, struct rt_sensor_config *cfg);
 示例如下：
 
 ```c
+#define SGP30_I2C_BUS_NAME       "i2c1"
+#define SGP30_I2C_ADDRESS        0x58
+
 static int rt_hw_sgp30_port(void)
 {
     struct rt_sensor_config cfg;
     
     cfg.intf.type = RT_SENSOR_INTF_I2C;
     cfg.intf.dev_name = SGP30_I2C_BUS_NAME;
+    cfg.intf.user_data = (void *)SGP30_I2C_ADDRESS;
     rt_hw_sgp30_init("sg3", &cfg);
     
     return RT_EOK;
