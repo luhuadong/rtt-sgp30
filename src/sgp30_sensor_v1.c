@@ -338,12 +338,17 @@ static rt_err_t _sensor_init(struct rt_i2c_bus_device *i2c_bus)
     rt_uint16_t featureset;
 
     /* Soft Reset: Reset Command using the General Call address */
-    cmd[0] = 0x00;
-    cmd[1] = 0x06;
-    if (!read_word_from_command(i2c_bus, cmd, 2, 10, RT_NULL, 0))
-    {
-        return -RT_ERROR;
-    }
+    struct rt_i2c_msg msgs;
+    rt_uint8_t buf[1] = {0x06};  // 软复位命令
+
+    // 配置I2C消息
+    msgs.addr = 0x00;           // 通用呼叫地址
+    msgs.flags = RT_I2C_WR;     // 写操作
+    msgs.buf = buf;             // 数据缓冲区
+    msgs.len = 1;
+    rt_i2c_transfer(i2c_bus, &msgs, 1);
+
+    rt_thread_mdelay(5);
 
     /* Get_Serial_ID */
     cmd[0] = 0x36;
